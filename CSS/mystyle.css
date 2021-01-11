@@ -1,0 +1,99 @@
+body {
+    background-color: #cdcdcd;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+a:visited {
+        color: red;
+}
+
+.section {
+    border-style: double;
+	border-width: thick;
+	border-color:red;
+	background-color:black;
+	line-height: 30px;
+	font-size: 20px;
+	color: white;
+	margin-bottom: 30px; 
+	padding-bottom:60px;
+	padding-top:20px;
+	padding-left:30px;
+	padding-right:30px;
+}
+
+.section1 {
+    border-style: double;
+	border-width: thick;
+	border-color:red;
+	background-color:white;
+	line-height: 30px;
+	font-size: 20px;
+	color: black;
+	margin-bottom: 30px; 
+	padding-bottom:60px;
+	padding-top:20px;
+	padding-left:30px;
+	padding-right:30px;
+}
+
+.nav {
+    float:left;
+    line-height:60px;
+    width:30%;
+    padding:10px; 
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.time {
+	color: #00FF00;
+	font-size: 20px;
+	float: right;
+	margin-right: 15px;
+}
+
+.time2 {
+    color: red;
+	font-size: 20px;
+	float: right;
+	margin-right: 15px;
+}
+
+#research{
+	float: right;
+	width: 70%;
+	margin-right: 60px;
+	margin-bottom:30px; 
+	padding:20px;
+	border: 5px solid navy;
+	border-style: double;
+}
+
+.date {
+	color: yellow;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.date2 {
+	color: red;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#date2{
+	font-size: 40px;
+	color: red;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+#graph-container {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: inherit;
+}
