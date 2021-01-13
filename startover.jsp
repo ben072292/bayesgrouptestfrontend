@@ -4,13 +4,13 @@
 
 <% 
 session.invalidate();
-out.println("<meta http-equiv='Refresh' content=3;url='configure.jsp'>");
+out.println("<meta http-equiv='Refresh' content=3;url='index.jsp'>");
 %>
 
 <html>
 <head><title>First JSP</title></head>
 
 <body>
-  <h3> Session is invalidated! Redirect to configuration page in 3 seconds... Or click <a href='configure.jsp'>here</a> to manually redirect </h3>
+  <h3> Session is invalidated! Redirect to configuration page in 3 seconds... Or click <a href='index.jsp'>here</a> to manually redirect </h3>
 </body>
 </html>

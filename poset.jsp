@@ -1,10 +1,10 @@
-<%@page import="edu.cwru.poset.covid19web.*, org.apache.spark.SparkConf, org.apache.spark.api.java.JavaSparkContext" %>
-<%@page import="java.util.*" %>
+<%@page import="edu.cwru.poset.covid19web.*" %>
+<%@page import="java.util.*, java.io.*" %>
 <%@page import="java.util.Map.*" %>
 
 
 <html>
-<head><title>First JSP</title></head>
+<head><title>Poset Model Illustration</title></head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body>
   <div id="title" style="width:100%;height:10%;text-align:center;border:1px solid black">
@@ -22,7 +22,7 @@
     <a id="startover" href="startover.jsp"><h3>Load New Configuration</h3></a>
     <a id="reload" href="<%= request.getRequestURI() %>"><h3>Reset Graph</h3></a>
     <button id="add_experiment"; onclick="addExperiment()"><h3>Select New Experiment</h3></button>
-    <button id="havling_algorithm"; onclick="halvingAlgorithm()"><h3>Perform Halving Algorithm</h3></button>
+    <button id="simulation"; onclick="simulation()"><h3>Start Group Test Simulations</h3></button>
   </div>
 </body>
 
@@ -30,22 +30,14 @@
 <%
     String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
     ConfigurationParser cp = new ConfigurationParser(filePath);
-    PosetModel.UPSETTHRESHOLD = 0.01;
+    ArrayList<ArrayList<String>> cpExperiments = cp.getExperiments();
+    ArrayList<Integer> cpExperimentOutcomes = cp.getExperimentOutcomes();
     PosetModel p = new PosetModel(cp.getAtoms(), cp.getpi0());
     p.setDilutionMatrix(cp.getDilutionMatrix());
+    for(int i = 0; i < cpExperiments.size(); i++){
+      p.updatePosteriorProbability(cpExperiments.get(i), cpExperimentOutcomes.get(i));
+    }
     HashMap<ArrayList<String>, ArrayList<ArrayList<String>>> tree = WebUtility.generateTreeStructure(p);
-    double upSetProbabilityThreshold = 0.01;
-    double branchProbabilityThreshold = 0.001;
-
-    JavaSparkContext sc;
-    // configure spark
-    SparkConf sparkConf = new SparkConf().setAppName("Simulation").setMaster("local[4]")
-        .set("spark.executor.memory", "2g");
-    sc = new JavaSparkContext(sparkConf);
-
-    SimulationSpark.regularHalvingAlgorithmSimulationSparkFast(sc, p, 4, upSetProbabilityThreshold,branchProbabilityThreshold);
-
-    sc.close();
 %>
 
 
@@ -225,8 +217,8 @@ var i,
      y: <%=p.getAtoms().size()+1 - arr.size()%>,
      size: 5,
      color: hslToHex(240 * (1-order/N), 100, 50),
-     type: order === N ? 'image' : 'def',
-     url : order === N ? urls[0] : null,
+     type: '<%=arr.toString()%>' === '<%=p.findMinToPointFive().toString()%>' ? 'image' : 'def',
+     url : '<%=arr.toString()%>' === '<%=p.findMinToPointFive().toString()%>' ? urls[0] : null,
      probability: '<%=p.getPosteriorProbabilityMap().get(arr)%>',
      uplowsets: '<%=WebUtility.showUpSetOnWeb(p, arr)%>',
      name: '<%= name %>'
@@ -292,10 +284,10 @@ urls.forEach(function(url) {
         });
         
         // Ajax calls to dynamically display node information
-        s.bind('overNode clickNode doubleClickNode rightClickNode', function(e) {
+        s.bind('overNode clickNode rightClickNode', function(e) {
           console.log(e.type, e.data.node.label, e.data.captor, e.data.node.color);
           
-          var stat = "Node: " + e.data.node.label + "<br>" + e.data.node.probability + "<br>" + e.data.node.uplowsets;
+          var stat = "Node: " + e.data.node.label + "<br>Probability: " + e.data.node.probability + "<br>" + e.data.node.uplowsets;
           
           document.getElementById("node-info").innerHTML = stat;
         });
@@ -355,120 +347,44 @@ function addExperiment() {
     });
 }
 
-function halvingAlgorithm(){
-  <% p.halvingAlgorithm(); %>
-  // Draw Graph
-var i,
-    N = <%=p.getE().size()%>;
-    g = {
-      nodes: [],
-      edges: []
-    },
-    urls = [
-      'images/top.png'
-    ],
-    loaded = 0;
-<% 
-   color = PosetModel.sortByValue(p.getPosteriorProbabilityMap());
-   Y = new double[p.getAtoms().size()+1];
-   for(ArrayList<String> arr : p.getE()){
-    Y[arr.size()]-=0.5;
-   }
-   for(ArrayList<String> arr : p.getE()) { 
-      String name = "";
-      for(String s: arr){
-        name += s + ",";
-      }
-%>
-   var order = <%= color.get(arr) %>;
-   g.nodes.push({
-     id: '<%=arr.toString()%>',
-     label: '<%=arr.toString()%>',
-     x: <%=Y[arr.size()]%>,
-     y: <%=p.getAtoms().size()+1 - arr.size()%>,
-     size: 5,
-     color: hslToHex(240 * (1-order/N), 100, 50),
-     type: order === N ? 'image' : 'def',
-     url : order === N ? urls[0] : null,
-     probability: '<%=p.getPosteriorProbabilityMap().get(arr)%>',
-     uplowsets: '<%=p.showUpAndLowSetsOnWeb(arr)%>',
-     name: '<%= name %>'
-   });
+function simulation(){
+  var instruction = '<button id="add_experiment_back"; onclick="addExperimentBack()"><h3>Back</h3></button><br><br>Please select simulation type:<br><form action="simulation.jsp" method="post" onsubmit="return checkCheckboxSelected()"><input type="checkbox" id="regular" name="simulation_type" value="regular" onchange="regularCheckbox(this)"><label for="regular">Regular Simulation</label><div id="regular_configure" style="display: none;"><br>Stage Number: <input type="text" id="regular_stage" name = "regular_stage" value="5"><br></div><br><input type="checkbox" id="k-lookahead" name="simulation_type" value="k-lookahead" onchange="kCheckbox(this)"><label for="k-lookahead">K-lookahead Simulation</label><div id="k_configure" style="display: none;"><br>K: <input type="text" id="k_number" name = "k_number" value="2"><br>Stage Number: <input type="text" id="k_stage" name = "k_stage" value="5"><br></div><br><input type="checkbox" id="individual" name="simulation_type" value="individual" onchange="individualCheckbox(this)"><label for="individual">Individual Simulation</label><div id="individual_configure" style="display: none;"><br>Stage Number: <input type="text" id="individual_stage" name = "individual_stage" value="5"><br></div><br><br>Error Threshold: <input type="text" id="error_threshold" name = "error_threshold" value="0.01"><br><input type="submit" value="Submit"></form>'
+  document.getElementById("link-panel").innerHTML = instruction;
+}
 
-<% Y[arr.size()]+=1; 
-} %>
+function checkCheckboxSelected(){
+  if(document.getElementById("regular").checked == false && document.getElementById("k-lookahead").checked == false && document.getElementById("individual").checked == false){
+    alert("Please Select At Least One Simulation.");
+    return false;
+  }
+  return true;
+}
 
-<% for(Entry<ArrayList<String>, ArrayList<ArrayList<String>>> t : tree.entrySet()) {
-    for(ArrayList<String> arr : t.getValue()){ %>
-      g.edges.push({
-        id: '<%=t.getKey().toString() + arr.toString()%>',
-        source: '<%=t.getKey().toString()%>',
-        target: '<%=arr.toString()%>',
-        "type": "arrow",
-        size: 1,
-        color: '#0000ff',
-        hover_color: '#00ff00'
-      });
-<%  }
-   } %>
+function regularCheckbox(element){
+  if(element.checked == true){
+    document.getElementById("regular_configure").style.display = "block";
+  }
+  else{
+    document.getElementById("regular_configure").style.display = "none";
+  }
+}
 
-clear_refresh_graph();
-// Instantiate sigma:
-urls.forEach(function(url) {
-  sigma.canvas.nodes.image.cache(
-    url,
-    function() {
-      if (++loaded === urls.length)
-        // Instantiate sigma:
-        s = new sigma({
-          graph: g,
-          renderer: {
-          container: 'graph-container',
-          type: 'canvas'
-         },
-         settings: {
-          minNodeSize: 8,
-          maxNodeSize: 16,
-          minArrowSize: 10,
-          doubleClickEnabled: false,
-          minEdgeSize: 0.5,
-          maxEdgeSize: 2,
-          enableEdgeHovering: true,
-          edgeHoverColor: 'edge',
-          edgeHoverSizeRatio: 2,
-          edgeHoverExtremities: true
-         }
-        });
+function kCheckbox(element){
+  if(element.checked == true){
+    document.getElementById("k_configure").style.display = "block";
+  }
+  else{
+    document.getElementById("k_configure").style.display = "none";
+  }
+}
 
-        // Initialize the dragNodes plugin:
-        var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
-        dragListener.bind('startdrag', function(event) {
-          console.log(event);
-        });
-        dragListener.bind('drag', function(event) {
-          console.log(event);
-        });
-        dragListener.bind('drop', function(event) {
-          console.log(event);
-        });
-        dragListener.bind('dragend', function(event) {
-          console.log(event);
-        });
-        
-        // Ajax calls to dynamically display node information
-        s.bind('overNode clickNode doubleClickNode rightClickNode', function(e) {
-          console.log(e.type, e.data.node.label, e.data.captor, e.data.node.color);
-          
-          var stat = "Node: " + e.data.node.label + "<br>" + e.data.node.probability + "<br>" + e.data.node.uplowsets;
-          
-          document.getElementById("node-info").innerHTML = stat;
-        });
-        
-        $(document).ready(function() {
-          document.getElementById("poset-summary").innerHTML = '<%= p.toStringWeb() %>';
-        });
-      });
-    });
+function individualCheckbox(element){
+  if(element.checked == true){
+    document.getElementById("individual_configure").style.display = "block";
+  }
+  else{
+    document.getElementById("individual_configure").style.display = "none";
+  }
 }
 
 function clear_refresh_graph() {
