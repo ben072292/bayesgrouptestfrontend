@@ -198,6 +198,9 @@ var i,
     ],
     loaded = 0;
 <% 
+   /* Sort by probability mass */
+   //HashMap<ArrayList<String>, Double> ProbabilityMass = p.calculatePosteriorMass();
+   //HashMap<ArrayList<String>, Integer> color = WebUtility.sortByValue(ProbabilityMass);
    HashMap<ArrayList<String>, Integer> color = WebUtility.sortByValue(p.getPosteriorProbabilityMap());
    double[] Y = new double[p.getAtoms().size()+1];
    for(ArrayList<String> arr : p.getE()){
@@ -205,27 +208,32 @@ var i,
    }
    for(ArrayList<String> arr : p.getE()) { 
       String name = "";
+      String label = "";
       for(String s: arr){
         name += s + ",";
+        label += s;
+      }
+      if(label.length() == 0){
+        label = "0";
       }
 %>
-   var order = <%= color.get(arr) %>;
-   g.nodes.push({
-     id: '<%=arr.toString()%>',
-     label: '<%=arr.toString()%>',
-     x: <%=Y[arr.size()]%>,
-     y: <%=p.getAtoms().size()+1 - arr.size()%>,
-     size: 5,
-     color: hslToHex(240 * (1-order/N), 100, 50),
-     type: '<%=arr.toString()%>' === '<%=p.findMinToPointFive().toString()%>' ? 'image' : 'def',
-     url : '<%=arr.toString()%>' === '<%=p.findMinToPointFive().toString()%>' ? urls[0] : null,
-     probability: '<%=p.getPosteriorProbabilityMap().get(arr)%>',
-     uplowsets: '<%=WebUtility.showUpSetOnWeb(p, arr)%>',
-     name: '<%= name %>'
-   });
+      var order = <%= color.get(arr) %>;
+      g.nodes.push({
+        id: '<%=arr.toString()%>',
+        label: '<%=label%>',
+        x: <%=Y[arr.size()]%>,
+        y: <%=p.getAtoms().size()+1 - arr.size()%>,
+        size: 5,
+        color: hslToHex(240 * (1-order/N), 100, 50),
+        type: '<%=arr.toString()%>' === '<%=p.findMinToPointFive().toString()%>' ? 'image' : 'def',
+        url : '<%=arr.toString()%>' === '<%=p.findMinToPointFive().toString()%>' ? urls[0] : null,
+        probability: '<%=p.getPosteriorProbabilityMap().get(arr)%>',
+        uplowsets: '<%=WebUtility.showUpSetOnWeb(p, arr)%>',
+        name: '<%= name %>'
+      });
 
-<% Y[arr.size()]+=1; 
-} %>
+<%    Y[arr.size()]+=1; 
+   } %>
 
 <% for(Entry<ArrayList<String>, ArrayList<ArrayList<String>>> t : tree.entrySet()) {
     for(ArrayList<String> arr : t.getValue()){ %>
@@ -233,7 +241,7 @@ var i,
         id: '<%=t.getKey().toString() + arr.toString()%>',
         source: '<%=t.getKey().toString()%>',
         target: '<%=arr.toString()%>',
-        "type": "arrow",
+        // "type": "arrow",
         size: 1,
         color: '#0000ff',
         hover_color: '#00ff00'
