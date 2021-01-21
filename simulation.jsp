@@ -9,9 +9,9 @@
   <h3> Session <%=session.getId()%><br><br>Simulation is finished!</h3>
 <% 
 PrintStream outStream;
-String outputPath = "temp/" + session.getId() + "/output.txt";
+String outputPath = "temp/" + session.getId() + "/output.csv";
 try {
-  outStream = new PrintStream(new FileOutputStream("/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/output.txt"));
+  outStream = new PrintStream(new FileOutputStream("/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/output.csv"));
   System.setOut(outStream);
 } catch (FileNotFoundException e) {
     // TODO Auto-generated catch block
@@ -21,11 +21,13 @@ String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.ge
 String s[] = request.getParameterValues("simulation_type");
 List<String> list = Arrays.asList(s);    
 int regularStage = Integer.parseInt(request.getParameter("regular_stage"));
+double regularTime = Double.parseDouble(request.getParameter("regular_time"));
 int kNumber = Integer.parseInt(request.getParameter("k_number")); 
 int kStage = Integer.parseInt(request.getParameter("k_stage"));
+double kTime = Double.parseDouble(request.getParameter("k_time"));
 int individualStage = Integer.parseInt(request.getParameter("individual_stage"));
-double upSetProbabilityThreshold = Double.parseDouble(request.getParameter("error_threshold"));
-PosetModel.UPSETTHRESHOLD = upSetProbabilityThreshold;
+double upsetThresholdUp = Double.parseDouble(request.getParameter("negative_error_threshold"));
+double upsetThresholdLo = Double.parseDouble(request.getParameter("positive_error_threshold"));
 double branchProbabilityThreshold = 0.001;
 /*
 for(int i = 0; i < s.length; i++){
@@ -47,11 +49,7 @@ for(int i = 0; i < cpExperiments.size(); i++){
 }
 
 // Before simulation, check whether it's needed to perform simulation.
-ArrayList<Double> atomsUpsetProbabilities = new ArrayList<>();
-for(String atom : p.getAtoms()){
-  atomsUpsetProbabilities.add(p.getUpSetProbabilityMass(atom));
-}
-if(p.allAtomsMeetThreshold(atomsUpsetProbabilities, upSetProbabilityThreshold)){
+if(p.allAtomsMeetThreshold(upsetThresholdUp, upsetThresholdLo)){
   System.out.println("There is no need to perform simulation, as all subjects can be confidently classified based on their current up-set probability masses.");
 }
 else{
@@ -61,27 +59,28 @@ else{
   JavaSparkContext sc = JavaSparkContext.fromSparkContext(SparkContext.getOrCreate(sparkConf));
   
   if(list.contains("regular")){
-      SimulationSpark.regularHalvingAlgorithmSimulationSparkFast(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), regularStage, upSetProbabilityThreshold,branchProbabilityThreshold);
+      SimulationSpark.regularHalvingAlgorithmSimulationSparkWithTimer(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), regularStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, regularTime);
   }
   if(list.contains("k-lookahead")){
-      SimulationSpark.kLookaheadHalvingAlgorithmSimulationSparkFast(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), kNumber, kStage, upSetProbabilityThreshold,branchProbabilityThreshold);
+      SimulationSpark.kLookaheadHalvingAlgorithmSimulationSparkWithTimer(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), kNumber, kStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, kTime);
   }
   if(list.contains("individual")){
       if(p.isHeterogeneous()){
-          SimulationSpark.individualTestingSimulationSpark(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), individualStage, upSetProbabilityThreshold, branchProbabilityThreshold);
+          SimulationSpark.individualTestingSimulationSpark(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), individualStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold);
       }
       else{
-          SimulationSpark.individualTestingSimulationSparkSymmetric(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), individualStage, upSetProbabilityThreshold,branchProbabilityThreshold);
+          SimulationSpark.individualTestingSimulationSparkSymmetric(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), individualStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold);
       }
   }
   
   sc.close();
 }
+String filename = "Simulation_Result_" + session.getId();
 %>
 
-<form method="get" action="<%= outputPath %>">
-   <button type="submit">Show Simulation Result</button>
-</form>
+<a href="<%= outputPath %>" download="<%= filename %>">
+    <button type="button">Download Simulation Result</button> 
+</a> 
 
 </body>
 </html>

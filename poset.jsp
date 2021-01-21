@@ -4,11 +4,11 @@
 
 
 <html>
-<head><title>Poset Model Illustration</title></head>
+<head><title>Lattice Model Illustration</title></head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body>
   <div id="title" style="width:100%;height:10%;text-align:center;border:1px solid black">
-    <h1>Poset Model For Covid 19</h1>
+    <h1>Lattice Model For Covid 19</h1>
   </div>
   <div id="graph-container" style="float:left;width:80%;height:60%;border:1px solid black"></div>
   <div id="node-info-container" style="float:right;width:19.7%;height:60%;overflow-y:auto;border:1px solid black">
@@ -22,7 +22,7 @@
     <a id="startover" href="startover.jsp"><h3>Load New Configuration</h3></a>
     <a id="reload" href="<%= request.getRequestURI() %>"><h3>Reset Graph</h3></a>
     <button id="add_experiment"; onclick="addExperiment()"><h3>Select New Experiment</h3></button>
-    <button id="simulation"; onclick="simulation()"><h3>Start Group Test Simulations</h3></button>
+    <button id="simulation"; onclick="simulation()"><h3>Start Group Testing Simulations</h3></button>
   </div>
 </body>
 
@@ -356,7 +356,7 @@ function addExperiment() {
 }
 
 function simulation(){
-  var instruction = '<button id="add_experiment_back"; onclick="addExperimentBack()"><h3>Back</h3></button><br><br>Please select simulation type:<br><form action="simulation.jsp" method="post" onsubmit="return checkCheckboxSelected()"><input type="checkbox" id="regular" name="simulation_type" value="regular" onchange="regularCheckbox(this)"><label for="regular">Regular Simulation</label><div id="regular_configure" style="display: none;"><br>Stage Number: <input type="text" id="regular_stage" name = "regular_stage" value="5"><br></div><br><input type="checkbox" id="k-lookahead" name="simulation_type" value="k-lookahead" onchange="kCheckbox(this)"><label for="k-lookahead">K-lookahead Simulation</label><div id="k_configure" style="display: none;"><br>K: <input type="text" id="k_number" name = "k_number" value="2"><br>Stage Number: <input type="text" id="k_stage" name = "k_stage" value="5"><br></div><br><input type="checkbox" id="individual" name="simulation_type" value="individual" onchange="individualCheckbox(this)"><label for="individual">Individual Simulation</label><div id="individual_configure" style="display: none;"><br>Stage Number: <input type="text" id="individual_stage" name = "individual_stage" value="5"><br></div><br><br>Error Threshold: <input type="text" id="error_threshold" name = "error_threshold" value="0.01"><br><input type="submit" value="Submit"></form>'
+  var instruction = '<button id="add_experiment_back"; onclick="addExperimentBack()"><h3>Back</h3></button><br><br>Please select simulation type:<br><form action="simulation.jsp" method="post" onsubmit="return checkCheckboxSelected()"><input type="checkbox" id="regular" name="simulation_type" value="regular" onchange="regularCheckbox(this)"><label for="regular">Bayesian Havling</label><div id="regular_configure" style="display: none;"><br>Stage Number: <input type="text" id="regular_stage" name = "regular_stage" value="5"><br>Time Limit (s): <input type="text" id="regular_time" name = "regular_time" value="10"><br></div><br><input type="checkbox" id="k-lookahead" name="simulation_type" value="k-lookahead" onchange="kCheckbox(this)"><label for="k-lookahead">K-step lookahead</label><div id="k_configure" style="display: none;"><br>K: <input type="text" id="k_number" name = "k_number" value="2"><br>Stage Number: <input type="text" id="k_stage" name = "k_stage" value="5"><br>Time Limit (s): <input type="text" id="k_time" name = "k_time" value="10"><br></div><br><input type="checkbox" id="individual" name="simulation_type" value="individual" onchange="individualCheckbox(this)"><label for="individual">Individual Testing</label><div id="individual_configure" style="display: none;"><br>Stage Number: <input type="text" id="individual_stage" name = "individual_stage" value="5"><br></div><br><br>Negative Error Threshold: <input type="text" id="negative_error_threshold" name = "negative_error_threshold" value="0.005"><br><br>Positive Error Threshold: <input type="text" id="positive_error_threshold" name = "positive_error_threshold" value="0.01"><br><input type="submit" value="Submit"></form>'
   document.getElementById("link-panel").innerHTML = instruction;
 }
 

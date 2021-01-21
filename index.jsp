@@ -5,10 +5,10 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bayesian Goup Test Web Tool For Covid-19</title>
+<title>Bayesian Goup Testing Web Tool For Covid-19</title>
 </head>
 <body>
-<h1>Bayesian Goup Test Web Tool For Covid-19</h1>
+<h1>Bayesian Goup Testing Web Tool For Covid-19</h1>
 <%
 
 String tutorialPath = "doc/tutorial.txt";
