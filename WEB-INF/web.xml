@@ -35,4 +35,13 @@
    </param-value> 
 </context-param>
 
+<servlet>
+        <servlet-name>PerformSimulation</servlet-name>
+        <servlet-class>edu.cwru.poset.covid19web.jsp.servlet.PerformSimulation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PerformSimulation</servlet-name>
+        <url-pattern>/PerformSimulationServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

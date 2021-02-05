@@ -1,0 +1,69 @@
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.00186175 seconds
+
+k-step lookahead Halving Algorithm Simulation
+Building a Complete Tree...
+Time consumption: 0.066680125 seconds
+Negative case threshold: 0.005
+Positive case threshold: 0.01
+k = 2, Number of Stage = 5
+Number Of Sequences:,215
+
+
+Statistics: 
+
+
+Classification Probability
+Stage,Correct,Incorrect,Total
+1,0.0 %,0.0 %,0.0 %
+2,19.742255266922506 %,0.005751885498846374 %,19.74800715242135 %
+3,14.564073688620905 %,0.004887804046584525 %,14.56896149266749 %
+4,26.736062376047336 %,0.03211726985857644 %,26.768179645905914 %
+5,21.30010719866932 %,0.17806800617809496 %,21.478175204847414 %
+Total,82.34249853026007 %,0.22082496558210227 %,82.56332349584217 %
+
+
+Potentially Can Be Classified in Future Stages:,16.714934604487777 %
+Total Probability Of Classified Sequences But With < .1 % Branch Probability:,0.7217418996700586 %
+Expected Average Number Of Classification Stages:,4.022865524156529
+Expected Average Number Of Classification Tests:,4.022865524156529
+False Rate
+Stage,False Positive,False Negative,Total
+1,0.0 %,0.0 %,0.0 %
+2,0.0 %,0.005751885498846374 %,0.005751885498846374 %
+3,0.0 %,0.004887804046584525 %,0.004887804046584525 %
+4,0.0 %,0.03211726985857644 %,0.03211726985857644 %
+5,0.08130398104767453 %,0.10360694355787803 %,0.18491092460555256 %
+Total: 0.08130398104767453 %,0.14636390296188537 %,0.2276678840095599 %
+
+
+Average Individual False Rate
+Subject,False Positive,False Negative,Total
+A,0.0%,0.0666063017550781%
+B,0.02227925774150608%,0.021377129878781407%
+C,0.0%,0.005751885498846374%
+D,0.02599831560827128%,0.017084871517293803%
+E,0.0%,0.0013739712772980717%
+F,0.011277698439987105%,0.017084871517293803%
+G,0.018120616867444723%,0.017084871517293803%
+H,0.0036280923904653405%,0.0%
+Total,0.08130398104767451 %,0.1463639029618853 %,0.22766788400955984 %
+
+
+Time consumption: 0.052281958 seconds
+
+

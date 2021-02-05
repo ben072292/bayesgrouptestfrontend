@@ -1,0 +1,17 @@
+# Define number of subjects
+8
+# Subject names and probabilities goes here, separated by column
+A : 0.02
+B : 0.2
+C : 0.2
+D : 0.2
+E : 0.2
+F : 0.2
+G : 0.2
+H : 0.2
+# Parameters for dilution matrix, first parameter is alpha, second parameter is h
+0.99
+0.005
+# Optional 1: If you wish to specify your own dilution matrix, list it down here, other wise put a $ sign down here:
+$
+# Optional 2: Set experiment sequences and their outcomes. 1 means all negative, 0 means contains at least one positive.

@@ -3,7 +3,9 @@
 <%@page import="java.util.Map.*" %>
 
 <% 
-String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
+//String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
+String filePath = "/tmp/bayesgrouptest/" + session.getId() + "/config.txt";
+
 String data = "\n" + request.getParameter("new_node") + request.getParameter("response");
 byte[] bytesArray = data.getBytes();
 File source = new File(filePath);

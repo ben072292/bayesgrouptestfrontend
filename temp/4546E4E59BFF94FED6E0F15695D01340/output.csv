@@ -1,0 +1,18 @@
+Directory created successfully
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.003230166 seconds
+

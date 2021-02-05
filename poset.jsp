@@ -28,7 +28,8 @@
 
 <!-- Initialize Java POSET object -->
 <%
-    String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
+    //String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
+    String filePath = "/opt/homebrew/Cellar/tomcat/9.0.43/libexec/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
     ConfigurationParser cp = new ConfigurationParser(filePath);
     ArrayList<ArrayList<String>> cpExperiments = cp.getExperiments();
     ArrayList<Integer> cpExperimentOutcomes = cp.getExperimentOutcomes();
@@ -356,9 +357,32 @@ function addExperiment() {
 }
 
 function simulation(){
-  var instruction = '<button id="add_experiment_back"; onclick="addExperimentBack()"><h3>Back</h3></button><br><br>Please select simulation type:<br><form action="simulation.jsp" method="post" onsubmit="return checkCheckboxSelected()"><input type="checkbox" id="regular" name="simulation_type" value="regular" onchange="regularCheckbox(this)"><label for="regular">Bayesian Havling</label><div id="regular_configure" style="display: none;"><br>Stage Number: <input type="text" id="regular_stage" name = "regular_stage" value="5"><br>Time Limit (s): <input type="text" id="regular_time" name = "regular_time" value="10"><br></div><br><input type="checkbox" id="k-lookahead" name="simulation_type" value="k-lookahead" onchange="kCheckbox(this)"><label for="k-lookahead">K-step lookahead</label><div id="k_configure" style="display: none;"><br>K: <input type="text" id="k_number" name = "k_number" value="2"><br>Stage Number: <input type="text" id="k_stage" name = "k_stage" value="5"><br>Time Limit (s): <input type="text" id="k_time" name = "k_time" value="10"><br></div><br><input type="checkbox" id="individual" name="simulation_type" value="individual" onchange="individualCheckbox(this)"><label for="individual">Individual Testing</label><div id="individual_configure" style="display: none;"><br>Stage Number: <input type="text" id="individual_stage" name = "individual_stage" value="5"><br></div><br><br>Negative Error Threshold: <input type="text" id="negative_error_threshold" name = "negative_error_threshold" value="0.005"><br><br>Positive Error Threshold: <input type="text" id="positive_error_threshold" name = "positive_error_threshold" value="0.01"><br><input type="submit" value="Submit"></form>'
+  var instruction = '<button id="add_experiment_back"; onclick="addExperimentBack()"><h3>Back</h3></button><br><br>Please select simulation type:<br><form id="simulation_form" action="PerformSimulationServlet" onsubmit="return checkCheckboxSelected()"><input type="checkbox" id="regular" name="simulation_type" value="regular" onchange="regularCheckbox(this)"><label for="regular">Bayesian Havling</label><div id="regular_configure" style="display: none;"><br>Stage Number: <input type="text" id="regular_stage" name = "regular_stage" value="5"><br>Time Limit (s): <input type="text" id="regular_time" name = "regular_time" value="10"><br></div><br><input type="checkbox" id="k-lookahead" name="simulation_type" value="k-lookahead" onchange="kCheckbox(this)"><label for="k-lookahead">K-step lookahead</label><div id="k_configure" style="display: none;"><br>K: <input type="text" id="k_number" name = "k_number" value="2"><br>Stage Number: <input type="text" id="k_stage" name = "k_stage" value="5"><br>Time Limit (s): <input type="text" id="k_time" name = "k_time" value="10"><br></div><br><input type="checkbox" id="individual" name="simulation_type" value="individual" onchange="individualCheckbox(this)"><label for="individual">Individual Testing</label><div id="individual_configure" style="display: none;"><br>Stage Number: <input type="text" id="individual_stage" name = "individual_stage" value="5"><br></div><br><br>Negative Error Threshold: <input type="text" id="negative_error_threshold" name = "negative_error_threshold" value="0.005"><br><br>Positive Error Threshold: <input type="text" id="positive_error_threshold" name = "positive_error_threshold" value="0.01"><br><input name="submit" type="submit" value="Submit"></form>';
   document.getElementById("link-panel").innerHTML = instruction;
+
+  $(document).ready(function() {
+        $('#simulation_form').submit(function(event) {
+                event.preventDefault();
+                var $form = $(this);
+                $.ajax({
+                    url : 'PerformSimulationServlet',
+                    data : $form.serialize(),
+                    beforeSend: function(responseText){
+                      $('#link-panel').html('<img src="images/loading.gif" style="width: 100%; height: 100%; object-fit: contain">');
+                      window.onbeforeunload = function() {
+                        return true;
+                      }
+                    },
+                    success : function(responseText) {
+                        $('#link-panel').html('<button id="add_experiment_back"; onclick="addExperimentBack()"><h3>Back</h3></button><br>' + responseText);
+                        window.onbeforeunload = null;
+
+                    }
+                });
+        });
+});
 }
+   
 
 function checkCheckboxSelected(){
   if(document.getElementById("regular").checked == false && document.getElementById("k-lookahead").checked == false && document.getElementById("individual").checked == false){

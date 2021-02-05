@@ -1,0 +1,327 @@
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.003634041 seconds
+
+Bayesian Halving Algorithm Simulation
+Building a Complete Tree...Time consumption: 0.011157833 seconds
+Negative case threshold: 0.005
+Positive case threshold: 0.01
+Number of Stages = 5
+Number Of Sequences:,2
+
+
+Statistics:
+
+Classification Probability
+Stage,Correct,Incorrect,Total
+1,0.0 %,0.0 %,0.0 %
+2,0.0 %,0.0 %,0.0 %
+3,0.0 %,0.0 %,0.0 %
+4,19.742255266922506 %,0.010023962997280781 %,19.752279229919782 %
+5,4.813998205481103 %,0.002444266839238417 %,4.816442472320341 %
+Total,24.556253472403604 %,0.012468229836519197 %,24.568721702240122 %
+
+
+Potentially Can Be Classified in Future Stages:,75.22454075760417 %
+Total Probability Of Classified Sequences But With < .1 % Branch Probability:,0.206737540155702 %
+Expected Average Number Of Classification Stages:,5.556789990678401
+Expected Average Number Of Classification Tests:,5.556789990678401
+False Rate
+Stage,False Positive,False Negative,Total
+1,0.0 %,0.0 %,0.0 %
+2,0.0 %,0.0 %,0.0 %
+3,0.0 %,0.0 %,0.0 %
+4,0.0 %,0.010023962997280781 %,0.010023962997280781 %
+5,0.0 %,0.002444266839238417 %,0.002444266839238417 %
+Total,0.0 %,0.012468229836519197 %,0.012468229836519197 %
+
+
+Average Individual False Rate
+Subject,False Positive,False Negative,Total
+A,0.0 %,0.012468229836519197 %
+B,0.0 %,0.0 %
+C,0.0 %,0.0 %
+D,0.0 %,0.0 %
+E,0.0 %,0.0 %
+F,0.0 %,0.0 %
+G,0.0 %,0.0 %
+H,0.0 %,0.0 %
+
+Total,0.0 %,0.012468229836519197%,0.012468229836519197%
+
+
+Time consumption: 0.383225583 seconds
+
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.62666E-4 seconds
+
+N = 0
+Prior Probabilities:
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 1.5167E-5 seconds
+
+N = 0
+Prior Probabilities:
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 4.8625E-5 seconds
+
+There is no need to perform simulation, as all subjects can be confidently classified based on their current up-set probability masses.
+Directory created successfully
+Directory created successfully
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.19042E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.86667E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.69208E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.02708E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.46167E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.76125E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.25208E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.26125E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.002039667 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.05833E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.002197458 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.84958E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.40375E-4 seconds
+

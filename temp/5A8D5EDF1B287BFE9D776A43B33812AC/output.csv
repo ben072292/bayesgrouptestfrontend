@@ -1,0 +1,69 @@
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.004600667 seconds
+
+k-step lookahead Halving Algorithm Simulation
+Building a Complete Tree...
+Time consumption: 0.150262708 seconds
+Negative case threshold: 0.005
+Positive case threshold: 0.01
+k = 2, Number of Stage = 5
+Number Of Sequences:,213
+
+
+Statistics: 
+
+
+Classification Probability
+Stage,Correct,Incorrect,Total
+1,0.0 %,0.0 %,0.0 %
+2,19.742255266922506 %,0.005751885498846374 %,19.74800715242135 %
+3,14.564073688620905 %,0.004887804046584525 %,14.56896149266749 %
+4,26.736865798458343 %,0.0349081807936135 %,26.771773979251957 %
+5,21.400903159409264 %,0.18300834819380282 %,21.58391150760307 %
+Total,82.44409791341101 %,0.22855621853284722 %,82.67265413194387 %
+
+
+Potentially Can Be Classified in Future Stages:,16.608563076092032 %
+Total Probability Of Classified Sequences But With < .1 % Branch Probability:,0.718782791964101 %
+Expected Average Number Of Classification Stages:,4.021736274462052
+Expected Average Number Of Classification Tests:,4.021736274462052
+False Rate
+Stage,False Positive,False Negative,Total
+1,0.0 %,0.0 %,0.0 %
+2,0.0 %,0.005751885498846374 %,0.005751885498846374 %
+3,0.0 %,0.004887804046584525 %,0.004887804046584525 %
+4,0.0027489638004082814 %,0.0349081807936135 %,0.03765714459402178 %
+5,0.08885853001527083 %,0.10099273660598965 %,0.18985126662126048 %
+Total: 0.0916074938156791 %,0.14654060694503404 %,0.23814810076071313 %
+
+
+Average Individual False Rate
+Subject,False Positive,False Negative,Total
+A,0.0%,0.06678300573822676%
+B,0.0%,0.004292258361487606%
+C,0.0%,0.005751885498846374%
+D,0.011277698439987105%,0.017084871517293803%
+E,0.025082416415320857%,0.018458842794591875%
+F,0.02238818407122409%,0.017084871517293803%
+G,0.029231102498681716%,0.017084871517293803%
+H,0.0036280923904653405%,0.0%
+Total,0.0916074938156791 %,0.146540606945034 %,0.2381481007607131 %
+
+
+Time consumption: 0.488373875 seconds
+
+

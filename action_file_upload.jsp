@@ -9,7 +9,8 @@
    File file ;
    int maxFileSize = 5000 * 1024;
    int maxMemSize = 5000 * 1024;
-   String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/";
+   //String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/";
+   String filePath = "/opt/homebrew/Cellar/tomcat/9.0.43/libexec/webapps/bayesgrouptest/temp/" + session.getId() + "/";
 
    // Verify the content type
    String contentType = request.getContentType();
@@ -20,7 +21,8 @@
       factory.setSizeThreshold(maxMemSize);
       
       // Location to save data that is larger than maxMemSize.
-      factory.setRepository(new File("/opt/tomcat/latest/webapps/bayesgrouptest/temp/"));
+      //factory.setRepository(new File("/opt/tomcat/latest/webapps/bayesgrouptest/temp/"));
+      factory.setRepository(new File("/opt/homebrew/Cellar/tomcat/9.0.43/libexec/webapps/bayesgrouptest/temp/"));
 
       // Create a new file upload handler
       ServletFileUpload upload = new ServletFileUpload(factory);

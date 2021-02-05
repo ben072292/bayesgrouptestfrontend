@@ -1,0 +1,114 @@
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.00175175 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.00177375 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.58083E-4 seconds
+
+N = 0
+Prior Probabilities:
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 3.2792E-5 seconds
+
+N = 0
+Prior Probabilities:
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 5.0375E-5 seconds
+
+N = 0
+Prior Probabilities:
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 3.375E-5 seconds
+
+Directory created successfully
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.001944333 seconds
+
+N = 0
+Prior Probabilities:
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 3.1375E-5 seconds
+
+N = 0
+Prior Probabilities:
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 1.45E-5 seconds
+

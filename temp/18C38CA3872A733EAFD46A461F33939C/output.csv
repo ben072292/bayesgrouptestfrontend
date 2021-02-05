@@ -1,0 +1,188 @@
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.002123625 seconds
+
+k-step lookahead Halving Algorithm Simulation
+Building a Complete Tree...
+Time consumption: 0.142574958 seconds
+Negative case threshold: 0.005
+Positive case threshold: 0.01
+k = 2, Number of Stage = 5
+Number Of Sequences:,216
+
+
+Statistics: 
+
+
+Classification Probability
+Stage,Correct,Incorrect,Total
+1,0.0 %,0.0 %,0.0 %
+2,19.742255266922506 %,0.005751885498846374 %,19.74800715242135 %
+3,14.564073688620905 %,0.004887804046584525 %,14.56896149266749 %
+4,25.596990552884762 %,0.03429296783785751 %,25.63128352072262 %
+5,22.53552893963105 %,0.18324719184702767 %,22.718776131478077 %
+Total,82.43884844805922 %,0.22817984923031612 %,82.66702829728953 %
+
+
+Potentially Can Be Classified in Future Stages:,16.608943863170577 %
+Total Probability Of Classified Sequences But With < .1 % Branch Probability:,0.7240278395398869 %
+Expected Average Number Of Classification Stages:,4.033197437393888
+Expected Average Number Of Classification Tests:,4.033197437393888
+False Rate
+Stage,False Positive,False Negative,Total
+1,0.0 %,0.0 %,0.0 %
+2,0.0 %,0.005751885498846374 %,0.005751885498846374 %
+3,0.0 %,0.004887804046584525 %,0.004887804046584525 %
+4,0.0027489638004082814 %,0.03429296783785751 %,0.0370419316382658 %
+5,0.08885853001527083 %,0.1012315802592145 %,0.19009011027448533 %
+Total: 0.0916074938156791 %,0.14616423764250291 %,0.23777173145818203 %
+
+
+Average Individual False Rate
+Subject,False Positive,False Negative,Total
+A,0.0%,0.06640663643569564%
+B,0.0%,0.004292258361487606%
+C,0.0%,0.005751885498846374%
+D,0.022388184071224088%,0.017084871517293803%
+E,0.025082416415320857%,0.018458842794591875%
+F,0.011277698439987105%,0.017084871517293803%
+G,0.029231102498681716%,0.017084871517293803%
+H,0.0036280923904653405%,0.0%
+Total,0.09160749381567909 %,0.14616423764250286 %,0.23777173145818195 %
+
+
+Time consumption: 0.086416541 seconds
+
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.25042E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 9.58334E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.67125E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 8.10167E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.39E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.37041E-4 seconds
+
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 7.91041E-4 seconds
+

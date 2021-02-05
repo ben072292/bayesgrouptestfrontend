@@ -9,15 +9,17 @@
   <h3> Session <%=session.getId()%><br><br>Simulation is finished!</h3>
 <% 
 PrintStream outStream;
-String outputPath = "temp/" + session.getId() + "/output.csv";
+String outputPath = "/opt/homebrew/Cellar/tomcat/9.0.43/libexec/webapps/bayesgrouptest/temp/" + session.getId() + "/output.csv";
 try {
-  outStream = new PrintStream(new FileOutputStream("/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/output.csv"));
+  //outStream = new PrintStream(new FileOutputStream("/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/output.csv"));
+  outStream = new PrintStream(new FileOutputStream("/opt/homebrew/Cellar/tomcat/9.0.43/libexec/webapps/bayesgrouptest/temp/" + session.getId() + "/output.csv"));
   System.setOut(outStream);
 } catch (FileNotFoundException e) {
     // TODO Auto-generated catch block
     e.printStackTrace();
   }
-String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
+//String filePath = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
+String filePath = "/opt/homebrew/Cellar/tomcat/9.0.43/libexec/webapps/bayesgrouptest/temp/" + session.getId() + "/config.txt";
 String s[] = request.getParameterValues("simulation_type");
 List<String> list = Arrays.asList(s);    
 int regularStage = Integer.parseInt(request.getParameter("regular_stage"));
@@ -59,10 +61,20 @@ else{
   JavaSparkContext sc = JavaSparkContext.fromSparkContext(SparkContext.getOrCreate(sparkConf));
   
   if(list.contains("regular")){
-      SimulationSpark.regularHalvingAlgorithmSimulationSparkWithTimer(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), regularStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, regularTime);
+      if(p.isHeterogeneous()){
+          SimulationSpark.regularHalvingAlgorithmSimulationSparkWithTimer(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), regularStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, regularTime);
+      }
+      else{
+          SimulationSpark.regularHalvingAlgorithmSimulationSparkWithTimerSymmetric(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), regularStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, regularTime);
+      }
   }
   if(list.contains("k-lookahead")){
-      SimulationSpark.kLookaheadHalvingAlgorithmSimulationSparkWithTimer(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), kNumber, kStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, kTime);
+      if(p.isHeterogeneous()){
+          SimulationSpark.kLookaheadHalvingAlgorithmSimulationSparkWithTimer(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), kNumber, kStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, kTime);
+      }
+      else{
+          SimulationSpark.kLookaheadHalvingAlgorithmSimulationSparkWithTimerSymmetric(sc, new PosetModel(p, PosetModel.COMPLETE_COPY_WITHOUT_REDUCING), kNumber, kStage, upsetThresholdUp, upsetThresholdLo, branchProbabilityThreshold, kTime);
+      }
   }
   if(list.contains("individual")){
       if(p.isHeterogeneous()){
@@ -75,10 +87,9 @@ else{
   
   sc.close();
 }
-String filename = "Simulation_Result_" + session.getId();
-%>
 
-<a href="<%= outputPath %>" download="<%= filename %>">
+%>
+<a href="download.jsp">
     <button type="button">Download Simulation Result</button> 
 </a> 
 

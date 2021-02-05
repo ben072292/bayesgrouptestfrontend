@@ -8,7 +8,7 @@
 <title>Bayesian Goup Testing Web Tool For Covid-19</title>
 </head>
 <body>
-<h1>Bayesian Goup Testing Web Tool For Covid-19</h1>
+<h1>Bayesian Group Testing Web Tool For Covid-19</h1>
 <%
 
 String tutorialPath = "doc/tutorial.txt";
@@ -36,7 +36,7 @@ String configTemplatePath = "doc/config.txt";
 
 <script>
 	function checkFileExist(){
-		if ($('#config_file').get(0).files.length === 0) {
+	if( document.getElementById("config_file").files.length === 0 ){   
     		alert("Please upload a configuration file");
     		return false;
 		}
@@ -46,7 +46,8 @@ String configTemplatePath = "doc/config.txt";
 
 <%@ page import = "java.io.*,java.util.*, javax.servlet.*" %>
 <%
-String path = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/";
+//String path = "/opt/tomcat/latest/webapps/bayesgrouptest/temp/" + session.getId() + "/";
+String path = "/opt/homebrew/Cellar/tomcat/9.0.43/libexec/webapps/bayesgrouptest/temp/" + session.getId() + "/";
 File file = new File(path);
 //Creating the directory
 boolean bool = file.mkdir();

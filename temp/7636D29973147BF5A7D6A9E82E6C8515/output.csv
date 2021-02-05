@@ -1,0 +1,67 @@
+N = 8
+Prior Probabilities:
+A: 0.02
+B: 0.2
+C: 0.2
+D: 0.2
+E: 0.2
+F: 0.2
+G: 0.2
+H: 0.2
+
+Generating Lattice Model...
+
+Finished generating Lattice model!
+
+Time consumption: 0.001785666 seconds
+
+k-step lookahead Halving Algorithm Simulation
+Building a Complete Tree...
+Time consumption: 14.1439695 seconds
+Negative case threshold: 0.005
+Positive case threshold: 0.01
+k = 5, Number of Stage = 4
+Number Of Sequences:,240579
+
+
+Statistics: 
+
+
+Classification Probability
+Stage,Correct,Incorrect,Total
+1,0.0 %,0.0 %,0.0 %
+2,36.382499592202976 %,0.07007019479389191 %,36.45256978699687 %
+3,29.008976052294184 %,0.02194098384120901 %,29.03091703613539 %
+4,18.168701941491552 %,0.10270376389968376 %,18.271405705391235 %
+Total,83.56017758598871 %,0.1947149425347847 %,83.7548925285235 %
+
+
+Potentially Can Be Classified in Future Stages:,13.822959426149358 %
+Total Probability Of Classified Sequences But With < .1 % Branch Probability:,2.422148045327144 %
+Expected Average Number Of Classification Stages:,3.1430905086134735
+Expected Average Number Of Classification Tests:,3.1430905086134735
+False Rate
+Stage,False Positive,False Negative,Total
+1,0.0 %,0.0 %,0.0 %
+2,0.0 %,0.07007019479389191 %,0.07007019479389191 %
+3,0.0023787902081918305 %,0.02194098384120901 %,0.02431977404940084 %
+4,0.0645899343371881 %,0.038126970272750714 %,0.1027169046099388 %
+Total: 0.06696872454537993 %,0.13013814890785164 %,0.19710687345323155 %
+
+
+Average Individual False Rate
+Subject,False Positive,False Negative,Total
+A,0.0%,0.06263266222733789%
+B,0.010151349310904098%,6.326322971260537E-4%
+C,0.0%,0.04693672080357296%
+D,0.0%,0.006295933070480934%
+E,0.0022846152263025356%,0.004617131094968647%
+F,0.015653919505594534%,0.0032846825337116336%
+G,0.025667950111047597%,0.0024521700220382133%
+H,0.013210890391531175%,0.003286216858615314%
+Total,0.06696872454537994 %,0.1301381489078516 %,0.19710687345323155 %
+
+
+Time consumption: 24.7667305 seconds
+
+
